@@ -41,8 +41,8 @@ variable "dns_settings" {
 }
 
 locals {
-  start_address = replace(var.gw_ip, "/\\d$/", 2)
-  end_address   = replace(var.gw_ip, "/\\d$/", 254)
+  start_address = replace(jsondecode(data.http.net_info.body).min_host, "/\\d$/", 2)
+  end_address   = jsondecode(data.http.net_info.body).max_host
   cidr          = "${var.gw_ip}/${var.prefix}"
   netmask       = cidrnetmask(local.cidr)
 }

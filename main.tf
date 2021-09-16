@@ -1,9 +1,9 @@
-# Get network info
+# Получить информацию сети
 data "http" "net_info" {
   url = "https://ipcalc.co/apicalc/${var.gw_ip}/${var.prefix}/"
 }
 
-# Create routed network
+# Создание маршрутизируемой сети
 resource "vcd_network_routed" "orgNet" {
   count = var.type == "routed" ? 1 : 0
   
@@ -22,7 +22,7 @@ resource "vcd_network_routed" "orgNet" {
   }
 }
 
-# Create isolated network
+# Создание изолированной сети
 resource "vcd_network_isolated" "orgNet" {
   count = var.type == "isolated" ? 1 : 0
 

@@ -31,6 +31,18 @@ variable "interface_type" {
   default     = "subinterface"
 }
 
+variable "pool_start" {
+  type        = string
+  description = ""
+  default = ""
+}
+
+variable "pool_end" {
+  type        = string
+  description = ""
+  default     = ""
+}
+
 variable "dns_settings" {
   type        = object({
     dns1 = string

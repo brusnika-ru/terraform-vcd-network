@@ -34,13 +34,13 @@ variable "interface_type" {
 variable "pool_start" {
   type        = string
   description = ""
-  default = ""
+  default     = "First IP of pool statics IP list"
 }
 
 variable "pool_end" {
   type        = string
   description = ""
-  default     = ""
+  default     = "Last IP of pool statics IP list"
 }
 
 variable "dns_settings" {

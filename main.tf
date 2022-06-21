@@ -1,9 +1,3 @@
-# Get network info
-data "http" "net_info" {
-  url = "https://ipcalc.co/apicalc/${var.gw_ip}/${var.prefix}/"
-}
-
-#
 data "vcd_nsxt_edgegateway" "orgEdge" {
   name = var.vcd_edge_name
 }
@@ -21,8 +15,8 @@ resource "vcd_network_routed_v2" "orgNet" {
   dns_suffix      = var.dns_settings.suff
 
   static_ip_pool {
-    start_address = var.pool_start != "" ? var.pool_start : local.start_address
-    end_address   = var.pool_end != "" ? var.pool_end : local.end_address
+    start_address = var.pool_start
+    end_address   = var.pool_end
   }
 }
 
@@ -38,7 +32,7 @@ resource "vcd_network_isolated_v2" "orgNet" {
   dns_suffix    = var.dns_settings.suff
 
   static_ip_pool {
-    start_address = local.start_address
-    end_address   = local.end_address
+    start_address = var.pool_start
+    end_address   = var.pool_end
   }
 }

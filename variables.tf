@@ -4,6 +4,11 @@ variable "type" {
   default     = "routed"
 }
 
+variable "vcd_group_name" {
+  type        = string
+  description = "The name of the vdc group"
+}
+
 variable "vcd_edge_name" {
   type        = string
   description = "The name of the edge gateway"

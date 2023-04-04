@@ -36,16 +36,10 @@ variable "interface_type" {
   default     = "subinterface"
 }
 
-variable "pool_start" {
-  type        = string
-  description = ""
-  default     = "First IP of pool statics IP list"
-}
-
-variable "pool_end" {
-  type        = string
-  description = ""
-  default     = "Last IP of pool statics IP list"
+variable "static_pool" {
+  type        = list
+  description = "(Optional) A range of IPs permitted to be used as static IPs for virtual machines"
+  default     = []
 }
 
 variable "dns_settings" {

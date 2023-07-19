@@ -36,8 +36,11 @@ variable "interface_type" {
   default     = "subinterface"
 }
 
-variable "static_pool" {
-  type        = list
+variable "static_pools" {
+  type        = list(object({
+    start_address = string
+    end_address   = string
+  }))
   description = "(Optional) A range of IPs permitted to be used as static IPs for virtual machines"
   default     = []
 }

@@ -20,10 +20,10 @@ resource "vcd_network_routed_v2" "orgNet" {
   dns_suffix      = var.dns_settings.suff
 
   dynamic "static_ip_pool" {
-    for_each = var.static_pool
+    for_each = var.static_pools
     content {
-      start_address = static_pool["start_address"]
-      end_address   = static_pool["end_address"]
+      start_address = static_ip_pool.value["start_address"]
+      end_address   = static_ip_pool.value["end_address"]
     }
   }
 }
@@ -40,10 +40,10 @@ resource "vcd_network_isolated_v2" "orgNet" {
   dns_suffix    = var.dns_settings.suff
 
   dynamic "static_ip_pool" {
-    for_each = var.static_pool
+    for_each = var.static_pools
     content {
-      start_address = static_pool["start_address"]
-      end_address   = static_pool["end_address"]
+      start_address = static_ip_pool.value["start_address"]
+      end_address   = static_ip_pool.value["end_address"]
     }
   }
 }

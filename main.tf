@@ -6,7 +6,7 @@ data "vcd_vdc_group" "orgGroup" {
 data "vcd_nsxt_edgegateway" "orgEdgeWithDCG" {
   count    = var.dcg != false ? 1 : 0 
   name     = var.vcd_edge_name
-  owner_id = data.vcd_vdc_group.orgGroup.id
+  owner_id = data.vcd_vdc_group.orgGroup[0].id
 }
 
 data "vcd_nsxt_edgegateway" "orgEdge" {
@@ -19,7 +19,7 @@ resource "vcd_network_routed_v2" "orgNet" {
   count = var.type == "routed" ? 1 : 0
   
   name            = var.net_name
-  edge_gateway_id = data.vcd_nsxt_edgegateway.orgEdge.id
+  edge_gateway_id = var.dcg != false ? data.vcd_nsxt_edgegateway.orgEdgeWithDCG[0].id : data.vcd_nsxt_edgegateway.orgEdge[0].id
   gateway         = var.gw_ip
   prefix_length   = var.prefix
   dns1            = var.dns_settings.dns1

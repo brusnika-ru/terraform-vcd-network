@@ -7,6 +7,7 @@ variable "type" {
 variable "vcd_group_name" {
   type        = string
   description = "The name of the vdc group"
+  default     = ""
 }
 
 variable "vcd_edge_name" {

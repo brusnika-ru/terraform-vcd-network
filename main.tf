@@ -3,7 +3,7 @@ data "vcd_vdc_group" "orgGroup" {
   name  = var.vcd_group_name
 }
 
-data "vcd_nsxt_edgegateway" "orgEdge" {
+data "vcd_nsxt_edgegateway" "orgEdgeWithDCG" {
   count    = var.dcg != false ? 1 : 0 
   name     = var.vcd_edge_name
   owner_id = data.vcd_vdc_group.orgGroup.id

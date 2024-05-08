@@ -54,6 +54,11 @@ variable "dns_settings" {
   description = "Common DNS settings"
 }
 
+variable "dcg" {
+  type = bool
+  default = false
+}
+
 locals {
   cidr          = "${var.gw_ip}/${var.prefix}"
   netmask       = cidrnetmask(local.cidr)

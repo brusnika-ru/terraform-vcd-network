@@ -1,10 +1,17 @@
 data "vcd_vdc_group" "orgGroup" {
-  name = var.vcd_group_name
+  count = var.dcg != false ? 1 : 0 
+  name  = var.vcd_group_name
 }
 
 data "vcd_nsxt_edgegateway" "orgEdge" {
+  count    = var.dcg != false ? 1 : 0 
   name     = var.vcd_edge_name
   owner_id = data.vcd_vdc_group.orgGroup.id
+}
+
+data "vcd_nsxt_edgegateway" "orgEdge" {
+  count    = var.dcg == false ? 1 : 0 
+  name     = var.vcd_edge_name
 }
 
 # Создание маршрутизируемой сети
